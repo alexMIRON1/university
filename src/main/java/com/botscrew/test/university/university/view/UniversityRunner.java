@@ -26,7 +26,7 @@ public class UniversityRunner implements CommandLineRunner {
             // TODO: get employee count by department
         } else if (input.contains(PartCommands.GLOBAL.name())) {
             // TODO: get all information that contains user's input word
-        }else{
+        } else {
             System.out.println("We do not support such command, try again:");
         }
     }
