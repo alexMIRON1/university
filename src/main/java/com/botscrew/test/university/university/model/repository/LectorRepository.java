@@ -1,5 +1,6 @@
 package com.botscrew.test.university.university.model.repository;
 
+import com.botscrew.test.university.university.model.entity.DepartmentName;
 import com.botscrew.test.university.university.model.entity.Lector;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,9 +21,9 @@ public interface LectorRepository extends JpaRepository<Lector, Long> {
      * @param departmentName department name
      * @return list of objects
      */
-    @Query("SELECT l.degree + COUNT(l) FROM Lector l JOIN l.departments d " +
-            "WHERE d.departmentName=:departmentName GROUP BY l.degree")
-    List<Object[]> findLectorDegreeCountByDepartmentName(String departmentName);
+    @Query("SELECT l.lectorDegree, COUNT(l) FROM Lector l JOIN l.departments d " +
+            "WHERE d.departmentName=:departmentName GROUP BY l.lectorDegree")
+    List<Object[]> findLectorDegreeCountByDepartmentName(DepartmentName departmentName);
 
     /**
      * using find average salary for lectors by department name from table
@@ -32,5 +33,5 @@ public interface LectorRepository extends JpaRepository<Lector, Long> {
      */
     @Query("SELECT AVG(l.salary) FROM Lector l JOIN l.departments d " +
             "WHERE d.departmentName=:departmentName")
-    Double getAverageSalaryByDepartment(String departmentName);
+    Double getAverageSalaryByDepartment(DepartmentName departmentName);
 }

@@ -1,6 +1,7 @@
 package com.botscrew.test.university.university.model.repository;
 
 import com.botscrew.test.university.university.model.entity.Department;
+import com.botscrew.test.university.university.model.entity.DepartmentName;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -20,7 +21,8 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
      * @param departmentName {@link Department} department's name
      * @return name head of department
      */
-    String findHeadOfDepartmentByDepartmentName(String departmentName);
+    @Query("SELECT d.headOfDepartment FROM Department d WHERE d.departmentName=:departmentName")
+    String findHeadOfDepartmentByDepartmentName(DepartmentName departmentName);
 
     /**
      * using for finding count of lectors by department name from table
@@ -28,8 +30,8 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
      * @param departmentName department name
      * @return count of lectors
      */
-    @Query("SELECT COUNT(l) FROM Department d JOIN d.lectors l WHERE d.departmentName=:departmentName")
-    Integer getCountLectorsByDepartmentName(String departmentName);
+    @Query("SELECT COUNT(l) FROM Department d JOIN d.workingLectors l WHERE d.departmentName=:departmentName")
+    Integer getCountLectorsByDepartmentName(DepartmentName departmentName);
 
     /**
      * using for finding any information that contains input
@@ -37,9 +39,9 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
      * @param input user's input
      * @return matching information
      */
-    @Query("SELECT d.departmentName FROM Department d WHERE d.departmentName LIKE %:input%" +
-            " UNION SELECT d.headOfDepartment FROM Department d WHERE d.headOfDepartment LIKE %:input%" +
-            " UNION SELECT l.lectorFullName FROM Lector l WHERE l.lectorFullName LIKE %:input%" +
-            " UNION SELECT l.degree FROM Lector l WHERE l.degree LIKE %:input%")
+    @Query(value = "SELECT d.department_name FROM university.department d WHERE d.department_name ILIKE %:input%" +
+            " UNION SELECT d.head_of_department FROM university.department d WHERE d.head_of_department ILIKE %:input%" +
+            " UNION SELECT l.lector_full_name FROM university.lector l WHERE l.lector_full_name ILIKE %:input%" +
+            " UNION SELECT l.lector_degree FROM university.lector l WHERE l.lector_degree ILIKE %:input%", nativeQuery = true)
     List<String> globalSearchByInput(String input);
 }

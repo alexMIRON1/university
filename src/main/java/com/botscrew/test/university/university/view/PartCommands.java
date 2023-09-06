@@ -6,5 +6,18 @@ package com.botscrew.test.university.university.view;
  * @author Oleksandr Myronenko
  */
 public enum PartCommands {
-    WHO, STATISTICS, SALARY, EMPLOYEE, GLOBAL;
+    WHO("Who"),
+    STATISTICS("Statistics"),
+    SALARY("Salary"),
+    EMPLOYEE("Employee"),
+    GLOBAL("Global");
+    private final String value;
+
+    PartCommands(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
 }
