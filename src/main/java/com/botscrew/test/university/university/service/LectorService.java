@@ -1,8 +1,9 @@
-package com.botscrew.test.university.university.model.service;
+package com.botscrew.test.university.university.service;
 
-import com.botscrew.test.university.university.model.entity.Degree;
 import com.botscrew.test.university.university.model.entity.Department;
+import com.botscrew.test.university.university.model.entity.DepartmentName;
 import com.botscrew.test.university.university.model.entity.Lector;
+import com.botscrew.test.university.university.model.entity.LectorDegree;
 import com.botscrew.test.university.university.model.repository.LectorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,11 +28,11 @@ public class LectorService {
      * @param departmentName department name {@link Department}
      * @return map where key - lector's degree, value - count of lectors
      */
-    public Map<Degree, Integer> showStatisticsByDepartmentName(String departmentName) {
-        Map<Degree, Integer> statistics = new HashMap<>();
+    public Map<LectorDegree, Long> showStatisticsByDepartmentName(DepartmentName departmentName) {
+        Map<LectorDegree, Long> statistics = new HashMap<>();
         List<Object[]> resultFromDatabase = lectorRepository.findLectorDegreeCountByDepartmentName(departmentName);
         for (Object[] objects : resultFromDatabase) {
-            statistics.put((Degree) objects[0], (Integer) objects[1]);
+            statistics.put((LectorDegree) objects[0], (Long) objects[1]);
         }
         return statistics;
     }
@@ -42,7 +43,7 @@ public class LectorService {
      * @param departmentName department name
      * @return double value average salary
      */
-    public Double getAverageSalaryByDepartmentName(String departmentName) {
+    public Double getAverageSalaryByDepartmentName(DepartmentName departmentName) {
         return lectorRepository.getAverageSalaryByDepartment(departmentName);
     }
 }

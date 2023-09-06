@@ -1,6 +1,7 @@
-package com.botscrew.test.university.university.model.service;
+package com.botscrew.test.university.university.service;
 
 import com.botscrew.test.university.university.model.entity.Department;
+import com.botscrew.test.university.university.model.entity.DepartmentName;
 import com.botscrew.test.university.university.model.repository.DepartmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class DepartmentService {
      * @param departmentName {@link Department} name
      * @return department head name
      */
-    public String getDepartmentHeadNameByDepartmentName(String departmentName) {
+    public String getDepartmentHeadNameByDepartmentName(DepartmentName departmentName) {
         return departmentRepository.findHeadOfDepartmentByDepartmentName(departmentName);
     }
 
@@ -33,10 +34,17 @@ public class DepartmentService {
      * @param departmentName department name
      * @return count of lectors
      */
-    public Integer getCountLectorsByDepartmentName(String departmentName) {
+    public Integer getCountLectorsByDepartmentName(DepartmentName departmentName) {
         return departmentRepository.getCountLectorsByDepartmentName(departmentName);
     }
-    public List<String> getSomethingByUserInput(String input){
+
+    /**
+     * using for global searching by some user input
+     *
+     * @param input user's inout
+     * @return list of string
+     */
+    public List<String> searchGlobalByUserInput(String input) {
         return departmentRepository.globalSearchByInput(input);
     }
 }

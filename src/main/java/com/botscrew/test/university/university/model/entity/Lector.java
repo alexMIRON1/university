@@ -13,7 +13,7 @@ import java.util.Set;
  * @author Oleksandr Myronenko
  */
 @Entity
-@Table(name = "lector")
+@Table(name = "lector", schema = "university")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,8 +24,9 @@ public class Lector {
     private String lectorFullName;
     @Column(name = "salary")
     private Double salary;
-    @Column(name = "degree")
-    private Degree degree;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "lector_degree")
+    private LectorDegree lectorDegree;
     @ManyToMany(mappedBy = "workingLectors")
     private Set<Department> departments;
 
