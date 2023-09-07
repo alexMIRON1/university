@@ -16,6 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * tests for {@link LectorRepository}
+ *
+ * @author Oleksandr Myronenko
  */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
