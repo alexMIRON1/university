@@ -1,11 +1,14 @@
 package com.botscrew.test.university.university.view.executor;
 
 import com.botscrew.test.university.university.service.DepartmentService;
+import com.botscrew.test.university.university.view.TypeCommands;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.StringJoiner;
 
+@Component(TypeCommands.GLOBAL)
 @RequiredArgsConstructor
 public class GlobalCommandExecutor implements CommandExecutor {
     private final DepartmentService departmentService;
