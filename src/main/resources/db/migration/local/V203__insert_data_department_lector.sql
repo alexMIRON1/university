@@ -1,0 +1,12 @@
+insert into university.department_lector (department_id, lector_id) values (7, 6);
+insert into university.department_lector (department_id, lector_id) values (5, 2);
+insert into university.department_lector (department_id, lector_id) values (3, 6);
+insert into university.department_lector (department_id, lector_id) values (2, 4);
+insert into university.department_lector (department_id, lector_id) values (5, 6);
+insert into university.department_lector (department_id, lector_id) values (1, 7);
+insert into university.department_lector (department_id, lector_id) values (4, 6);
+insert into university.department_lector (department_id, lector_id) values (3, 5);
+insert into university.department_lector (department_id, lector_id) values (5, 3);
+insert into university.department_lector (department_id, lector_id) values (7, 5);
+insert into university.department_lector (department_id, lector_id) values (4, 4);
+insert into university.department_lector (department_id, lector_id) values (5, 5);
